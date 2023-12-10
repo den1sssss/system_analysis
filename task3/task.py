@@ -1,3 +1,5 @@
+import numpy as np
+
 def build_matrix(edges):
     matrix = {}
     
@@ -21,15 +23,22 @@ def build_matrix(edges):
         
         matrix[high][2] += matrix[low][0]
         matrix[low][3] += matrix[high][1]
-        matrix[low][4] += matrix[high][0] - 1
+        matrix[high][4] += matrix[low][0] - 1
 
     return [matrix[i] for i in range(len(matrix))]
 
-def task(edges_csv: str):
+def task2(edges_csv: str):
     edges = edges_csv.split('\n')
     matrix = build_matrix(edges)
     return matrix
 
+def task(matrix):
+    n = len(matrix)
+    return round(
+        -sum(p * np.log2(p) for row in matrix for num in row if (p := num / (n - 1)) > 0), 1)
+
+
 if __name__ == "__main__":
-    result = task("1,2\n2,3\n2,6\n3,4\n3,5")
+    csv_data = task2("1,2\n2,3\n2,6\n3,4\n3,5")
+    result = task(csv_data)
     print(result)
