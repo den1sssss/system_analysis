@@ -1,7 +1,7 @@
 import json
 import numpy as np
 
-def calculate_desp_similarity(first_order, second_order, third_order):
+def task(first_order, second_order, third_order):
     first_order = json.loads(first_order)
     second_order = json.loads(second_order)
     third_order = json.loads(third_order)
@@ -15,7 +15,7 @@ def calculate_desp_similarity(first_order, second_order, third_order):
     return desp
 
 if __name__ == "__main__":
-    print(calculate_desp_similarity(
+    print(task(
         '["O1","O2","O3"]',
         '["O1","O3","O2"]',
         '["O1","O3","O2"]'))
